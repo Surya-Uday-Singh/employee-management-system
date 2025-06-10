@@ -44,7 +44,7 @@ public class EmployeeService {
 
     public EmployeeResponseDTO updateEmployee(UUID id, EmployeeRequestDTO employeeRequestDTO) {
         Employee employee = employeeRepository.findById(id).orElseThrow(() -> new EmployeeNotFoundException("Employee not found with id: " + id));
-        if (employeeRepository.existsByEmail(employeeRequestDTO.getEmail())) {
+        if (employeeRepository.existsByEmailAndIdNot(employeeRequestDTO.getEmail(), id)) {
 
             throw new EmailAlreadyExistsException("An employee with this email already exists: " +
                     employeeRequestDTO.getEmail());
@@ -60,4 +60,9 @@ public class EmployeeService {
 
 
     }
+
+    public void deleteEmployee(UUID id) {
+        employeeRepository.deleteById(id);
+    }
+
 }
