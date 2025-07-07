@@ -78,6 +78,7 @@
     </dependencies>
 
 
+
     <build>
         <extensions>
             <!-- Ensure OS compatibility for protoc -->
@@ -115,6 +116,5 @@
             </plugin>
         </plugins>
     </build>
-
 
 </project>

@@ -1,0 +1,7 @@
+GRPC localhost:9001/SalaryService/CreateSalaryAccount
+
+{
+  "employeeId": "12345",
+  "name": "John Doe",
+  "email": "abc@gmail.com"
+}
