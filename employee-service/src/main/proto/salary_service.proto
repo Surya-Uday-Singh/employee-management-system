@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "salary";
+
+service  SalaryService {
+  rpc CreateSalaryAccount (SalaryRequest) returns (SalaryResponse);
+
+}
+
+message SalaryRequest {
+  string employeeId = 1;
+  string name = 2;
+  string email = 3;
+}
+
+message SalaryResponse {
+  string accountId = 1;
+  string status = 2;
+}
