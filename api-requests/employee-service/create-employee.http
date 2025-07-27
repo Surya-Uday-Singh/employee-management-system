@@ -3,10 +3,10 @@ POST http://localhost:4000/employees
 Content-Type: application/json
 
 {
-  "name": "Doe John",
-  "email": "ohlulaa@example.com",
+  "name": "Doenjj John",
+  "email": "ohaa@example.com",
   "address": "2 street north",
-  "dateOfBirth": "2000-11-12",
+  "dateOfBirth": "2001-11-12",
   "registeredDate": "2023-05-10"
 }
 ###

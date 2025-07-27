@@ -4,6 +4,8 @@ import com.em.employeeservice.dto.EmployeeRequestDTO;
 import com.em.employeeservice.dto.EmployeeResponseDTO;
 import com.em.employeeservice.exception.EmailAlreadyExistsException;
 import com.em.employeeservice.exception.EmployeeNotFoundException;
+import com.em.employeeservice.grpc.SalaryServiceGrpcClient;
+import com.em.employeeservice.kafka.kafkaProducer;
 import com.em.employeeservice.mapper.EmployeeMapper;
 import com.em.employeeservice.model.Employee;
 import com.em.employeeservice.repository.EmployeeRepository;
@@ -16,10 +18,15 @@ import java.util.stream.Collectors;
 
 @Service
 public class EmployeeService {
-    private EmployeeRepository employeeRepository;
+    private final EmployeeRepository employeeRepository;
+    private final SalaryServiceGrpcClient salaryServiceGrpcClient;
+    private final com.em.employeeservice.kafka.kafkaProducer kafkaProducer;
 
-    public EmployeeService(EmployeeRepository employeeRepository) {
+
+    public EmployeeService(EmployeeRepository employeeRepository, SalaryServiceGrpcClient salaryServiceGrpcClient, kafkaProducer kafkaProducer) {
         this.employeeRepository = employeeRepository;
+        this.salaryServiceGrpcClient = salaryServiceGrpcClient;
+        this.kafkaProducer = kafkaProducer;
     }
 
     public List<EmployeeResponseDTO> getEmployees() {
@@ -36,6 +43,9 @@ public class EmployeeService {
         }
         Employee newEmployee = employeeRepository.save(
                 EmployeeMapper.toEntityModel(employeeRequestDTO));
+
+        salaryServiceGrpcClient.createSalaryAccount(newEmployee.getId().toString(), newEmployee.getName(), newEmployee.getEmail());
+        kafkaProducer.sendEvent(newEmployee);
 
         return EmployeeMapper.toDTO(newEmployee);
 
