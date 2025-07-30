@@ -1,0 +1,23 @@
+server:
+  port: 4004
+
+
+spring:
+  cloud:
+    gateway:
+      server:
+        webflux:
+          routes:
+            - id: employee-service-route
+              uri: http://employee-service:4000
+              predicates:
+                - Path=/api/employees/**
+              filters:
+                - StripPrefix=1
+
+            - id: api-docs-employee-route
+              uri: http://employee-service:4000
+              predicates:
+                - Path=/api-docs/employees
+              filters:
+                - RewritePath=/api-docs/employees,/v3/api-docs
