@@ -3,6 +3,8 @@ package com.em.authservice.service;
 
 import com.em.authservice.dto.LoginRequestDTO;
 import com.em.authservice.model.User;
+import com.em.authservice.util.JwtUtil;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -10,10 +12,14 @@ import java.util.Optional;
 @Service
 public class AuthService {
     private final UserService userService;
+    private final PasswordEncoder passwordEncoder;
+    private final JwtUtil jwtUtil;
 
 
-    public AuthService(UserService userService) {
+    public AuthService(UserService userService, PasswordEncoder passwordEncoder, JwtUtil jwtUtil) {
         this.userService = userService;
+        this.passwordEncoder = passwordEncoder;
+        this.jwtUtil = jwtUtil;
     }
     public Optional<String> authenticate(LoginRequestDTO loginRequestDTO){
       Optional<String> token = userService.findByEmail(loginRequestDTO.getEmail())
