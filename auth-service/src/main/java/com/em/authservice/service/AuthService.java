@@ -4,6 +4,7 @@ package com.em.authservice.service;
 import com.em.authservice.dto.LoginRequestDTO;
 import com.em.authservice.model.User;
 import com.em.authservice.util.JwtUtil;
+import io.jsonwebtoken.JwtException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -30,4 +31,15 @@ public class AuthService {
 
 
     };
+
+
+    public boolean validateToken(String token) {
+        try {
+            jwtUtil.validateToken(token);
+        return true;
+
+        } catch (JwtException e) {
+            return false;
+        }
+    }
 }

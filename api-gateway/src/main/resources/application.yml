@@ -8,12 +8,20 @@ spring:
       server:
         webflux:
           routes:
+            - id: auth-service-route
+              uri: http://auth-service:4005
+              predicates:
+                - Path=/auth/**
+              filters:
+                - StripPrefix=1
+
             - id: employee-service-route
               uri: http://employee-service:4000
               predicates:
                 - Path=/api/employees/**
               filters:
                 - StripPrefix=1
+                - JwtValidation
 
             - id: api-docs-employee-route
               uri: http://employee-service:4000
@@ -21,3 +29,10 @@ spring:
                 - Path=/api-docs/employees
               filters:
                 - RewritePath=/api-docs/employees,/v3/api-docs
+
+            - id: api-docs-auth-route
+              uri: http://auth-service:4005
+              predicates:
+                - Path=/api-docs/auth
+              filters:
+                - RewritePath=/api-docs/auth,/v3/api-docs
