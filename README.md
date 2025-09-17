@@ -1,6 +1,6 @@
 # Employee Management System
 
-This repository contains a modular Employee Management System composed of several cooperating microservices. The description below focuses solely on what the project is and what each component's responsibilities are — operational and setup details are intentionally excluded.
+This repository contains a modular Employee Management System composed of several cooperating microservices. The description below focuses solely on what the project is and what each component's responsibilities are operational and setup details are intentionally excluded.
 
 ## Summary
 
