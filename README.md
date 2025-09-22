@@ -1,7 +1,8 @@
 # Employee Management System
 
 This repository contains a modular Employee Management System composed of several cooperating microservices. The description below focuses solely on what the project is and what each component's responsibilities are operational and setup details are intentionally excluded.
-<img width="1920" height="1080" alt="Frontend (Client)" src="https://github.com/user-attachments/assets/501393ec-c09a-4ef4-83c0-cbb304fb2877" />
+<img width="1331" height="600" alt="Frontend (Client)-2" src="https://github.com/user-attachments/assets/5b08133c-7f99-4585-b17d-7e08b5a88550" />
+
 
 ## Summary
 
