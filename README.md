@@ -1,6 +1,7 @@
 # Employee Management System
 
 This repository contains a modular Employee Management System composed of several cooperating microservices. The description below focuses solely on what the project is and what each component's responsibilities are operational and setup details are intentionally excluded.
+<img width="1920" height="1080" alt="Frontend (Client)" src="https://github.com/user-attachments/assets/501393ec-c09a-4ef4-83c0-cbb304fb2877" />
 
 ## Summary
 
@@ -13,23 +14,23 @@ The system models a production-like service architecture for employee management
 
 ## Core Services & Responsibilities
 
-- api-gateway
+api-gateway
 
   - Central routing and lightweight policy enforcement (authentication, request filtering). Does not own business data.
 
-- employee-service
+employee-service
 
   - Manages employee lifecycle and domain rules. Owns employee data and publishes domain events describing changes.
 
-- auth-service
+auth-service
 
   - Issues and validates tokens. Central authority for authentication-related concerns and validation used by other components.
 
-- salary-service
+salary-service
 
   - Manages salary accounts and related operations. Exposes gRPC interfaces for strongly-typed, low-latency internal calls.
 
-- analytics-service
+analytics-service
   - Consumes domain events (e.g., employee events) to create analytics, projections, and audit logs. Functions as a read-model/analytics pipeline.
 
 ## API Surface & Integration Patterns
